@@ -37,10 +37,21 @@ if (require.main === require.cache[eval('__filename')]) {
 /***/ }),
 
 /***/ 918:
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const os = __webpack_require__(87);
+
+const core = __webpack_require__(186);
 
 function getDownloadURL(version) {
+  core.debug(`platform: ${ os.platform() }`);
+  core.debug(`arch: ${ os.arch() }`);
+  core.debug(version);
 
+  // https://github.com/cli/cli/releases/download/v1.1.0/gh_1.1.0_linux_amd64.tar.gz
+  // https://github.com/cli/cli/releases/download/v1.1.0/gh_1.1.0_macOS_amd64.tar.gz
+  // https://github.com/cli/cli/releases/download/v1.1.0/gh_1.1.0_windows_amd64.zip
+  return `https://github.com/cli/cli/releases/download/v${ version }/gh_${ version }_linux_amd64.tar.gz`
 }
 
 module.exports = { getDownloadURL }
