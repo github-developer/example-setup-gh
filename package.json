@@ -10,8 +10,12 @@
     "all": "npm run lint && npm run prepare && npm run test"
   },
   "keywords": [],
-  "author": "Steve Winton <stevewinton@gmail.com> (https://github.com/swinton)",
-  "license": "ISC",
+  "homepage": "https://github.com/github-developer/setup-gh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/github-developer/setup-gh.git"
+  },
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/tool-cache": "^1.6.0"
