@@ -1,0 +1,24 @@
+{
+  "name": "setup-gh",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "prepare": "ncc build index.js -o dist --source-map --license licenses.txt",
+    "test": "jest",
+    "all": "npm run lint && npm run prepare && npm run test"
+  },
+  "keywords": [],
+  "author": "Steve Winton <stevewinton@gmail.com> (https://github.com/swinton)",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/tool-cache": "^1.6.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.24.0",
+    "eslint": "^7.4.0",
+    "jest": "^26.1.0"
+  }
+}

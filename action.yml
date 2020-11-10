@@ -1,0 +1,10 @@
+name: setup-gh
+description: Setup GitHub CLI, gh, on GitHub Actions runners
+inputs:
+  version:
+    description: Version of GitHub CLI to install
+    required: false
+    default: 1.2.0
+runs:
+  using: node12
+  main: dist/index.js
