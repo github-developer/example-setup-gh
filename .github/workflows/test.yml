@@ -5,12 +5,17 @@ on: [ push ]
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, windows-2016, ubuntu-18.04]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+
     - name: Setup gh
       uses: ./
       with:
         version: 1.1.0
+
     - run: gh --version
