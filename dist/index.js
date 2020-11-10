@@ -5,6 +5,7 @@ require('./sourcemap-register.js');module.exports =
 /***/ 932:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+const path = __webpack_require__(622);
 const core = __webpack_require__(186);
 const tc = __webpack_require__(784);
 const { getDownloadURL } = __webpack_require__(918);
@@ -14,13 +15,14 @@ async function setup() {
   const version = core.getInput('version');
 
   // Download the specific version of the tool, e.g. as a tarball
-  const pathToTarball = await tc.downloadTool(getDownloadURL(version));
+  const downloadURL = getDownloadURL(version);
+  const pathToTarball = await tc.downloadTool(downloadURL.url);
 
   // Extract the tarball onto host runner
   const pathToCLI = await tc.extractTar(pathToTarball);
 
   // Expose the tool by adding it to the PATH
-  core.addPath(pathToCLI)
+  core.addPath(path.join(pathToCLI, downloadURL.filename, 'bin'));
 }
 
 module.exports = setup
@@ -62,7 +64,12 @@ function mapOS(os) {
 }
 
 function getDownloadURL(version) {
-  return `https://github.com/cli/cli/releases/download/v${ version }/gh_${ version }_${ mapOS(os.platform()) }_${ mapArch(os.arch()) }.tar.gz`
+  const filename = `gh_${ version }_${ mapOS(os.platform()) }_${ mapArch(os.arch()) }`;
+  const url = `https://github.com/cli/cli/releases/download/v${ version }/${ filename }.tar.gz`;
+  return {
+    url,
+    filename
+  };
 }
 
 module.exports = { getDownloadURL }
