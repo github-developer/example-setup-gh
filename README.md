@@ -30,5 +30,8 @@ The actions supports the following inputs:
 
 - `version`: The version of `gh` to install, defaulting to `1.2.0`
 
+## Further reading
+For information on Creating a JavaScript action, read [the docs](https://docs.github.com/actions/creating-actions/creating-a-javascript-action).
+
 ## License
 [MIT](LICENSE).
